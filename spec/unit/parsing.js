@@ -254,6 +254,31 @@ describe 'Mustache.to_html'
     end
   end
   
+  describe 'inverted_section_by_missing_value'
+    it 'should generate the correct html'
+      view = json_fixture('inverted_section_by_missing_value.js')
+      template = fixture('inverted_section_by_missing_value.html')
+      rendered = fixture('inverted_section_by_missing_value.txt')
+      Mustache.to_html(template,view).should.eql(rendered)
+    end
+    
+    it 'should sendFun the correct html'
+      view = json_fixture('inverted_section_by_missing_value.js')
+      template = fixture('inverted_section_by_missing_value.html')
+      rendered = fixture('inverted_section_by_missing_value.txt')
+      
+      chunks = []
+      sendFun = function(chunk) {
+        if (chunk != "") {
+          chunks.push(chunk)
+        }
+      }
+
+      Mustache.to_html(template, view, null, sendFun)
+      chunks.join("\n").should.eql(rendered)
+    end
+  end
+  
   describe 'null_string'
     it 'should generate the correct html'
       view = json_fixture('null_string.js')
