@@ -453,12 +453,15 @@ describe 'Mustache.to_html'
   end
   
   describe 'array_partial'
+    // var template = #{template};
+    // var partials = {"partial": #{partial}};
+    // var result = Mustache.to_html(template, partial_context, partials);
     it 'should generate the correct html'
       view = json_fixture('array_partial.js')
       template = fixture('array_partial.html')
       partials = {'partial': fixture('array_partial.2.html')}
       rendered = fixture('array_partial.txt')
-      Mustache.to_html(template,view, partials).should.eql(rendered)
+      Mustache.to_html(template, view, partials).should.eql(rendered)
     end
     
     it 'should sendFun the correct html'
@@ -474,7 +477,7 @@ describe 'Mustache.to_html'
         }
       }
 
-      Mustache.to_html(template, view, partial_context, sendFun)
+      Mustache.to_html(template, view, partials, sendFun)
       chunks.join("\n").should.eql(rendered)
     end
   end
@@ -501,7 +504,7 @@ describe 'Mustache.to_html'
         }
       }
 
-      Mustache.to_html(template, view, partial_context, sendFun)
+      Mustache.to_html(template, view, partials, sendFun)
       chunks.join("\n").should.eql(rendered)
     end
   end
@@ -528,7 +531,7 @@ describe 'Mustache.to_html'
         }
       }
 
-      Mustache.to_html(template, view, partial_context, sendFun)
+      Mustache.to_html(template, view, partials, sendFun)
       chunks.join("\n").should.eql(rendered)
     end
   end
@@ -555,7 +558,7 @@ describe 'Mustache.to_html'
         }
       }
 
-      Mustache.to_html(template, view, partial_context, sendFun)
+      Mustache.to_html(template, view, partials, sendFun)
       chunks.join("\n").should.eql(rendered)
     end
   end
